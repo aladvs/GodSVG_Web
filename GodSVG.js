@@ -14404,7 +14404,14 @@ const Engine = (function () {
 				this.config.update(override);
 				// Add main-pack argument.
 				const exe = this.config.executable;
-				const pack = this.config.mainPack || `${exe}.pck`;
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const version = urlParams.get('Version')
+        //Gets version from URL and parses it to get proper pck
+
+        console.log(version)
+				const pack = this.config.mainPack || `${version}/${exe}.pck`;
 				this.config.args = ['--main-pack', pack].concat(this.config.args);
 				// Start and init with execName as loadPath if not inited.
 				const me = this;
