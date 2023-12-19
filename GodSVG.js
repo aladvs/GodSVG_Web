@@ -14408,6 +14408,16 @@ const Engine = (function () {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const version = urlParams.get('Version')
+        if (!version) {
+          // Add the parameter to the URL
+          urlParams.set('Version', 'Latest');
+
+          // Get the updated URL
+          const updatedUrl = window.location.origin + window.location.pathname + '?' + urlParams.toString();
+
+          // Refresh the page with the updated URL
+          window.location.href = updatedUrl;
+        }
         //Gets version from URL and parses it to get proper pck
 
         console.log(version)
